@@ -19,8 +19,15 @@ export class ChatService {
   }
 
 //obtener heroes
-  getmessages(){
+  getHeros(){
+
     return this._WebsocketService.listen('heroes')
+
+  }
+
+
+  obtenerMensaje(){
+    return this._WebsocketService.listen('mensaje')
   }
 
 }

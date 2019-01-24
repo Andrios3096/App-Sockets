@@ -13,8 +13,8 @@
     placeholder="ingrese un heroe">
 </form>
 
-<!-- <button class="btn btn-success mb-3" (click)="crearNuevo()"> Holi xd</button> -->
+<button class="btn btn-success mb-3" (click)="enviarMensaje()"> enviar un mensaje al servidor</button>
 
 <div class="mb-3" *ngFor="let hero of arrayHeroes; let i=index">
-{{hero.poder}}
+NOMBRE : {{hero.nombre}} - PODER: {{hero.poder}} 
 </div>

@@ -30,6 +30,7 @@ export class WebsocketService {
   }
 
 //enviar
+
   emit(evento:string, payload?:any, callback?:Function){
 
     console.log('emitiendo', evento);
@@ -38,6 +39,7 @@ export class WebsocketService {
   }
 
 // escuchar
+
   listen( evento:string ){
     return this.socket.fromEvent( evento )
   }

@@ -13,13 +13,8 @@ import { HttpClient } from "@angular/common/http";
 export class AppComponent implements OnInit, OnDestroy {
 
   
-texto = ''
+texto = '';
 
-
-    heroe = {
-      nombre: this.texto,
-      poder: this.texto
-    }
   
   suscripcion: Subscription;
   arrayHeroes:any=[]
@@ -32,18 +27,25 @@ texto = ''
   ngOnInit(){
 
     this.getData();
+    this.obtenerMensaje();
 
     this.arrayHeroes = []
 
-    let a = this._ChatService.getmessages().subscribe(msg => {
+    let a = this._ChatService.getHeros().subscribe(heroe => {
 
-      console.log(msg);
-
-      this.arrayHeroes = msg
+      this.arrayHeroes = heroe
 
     a.unsubscribe
+
     });
     
+  }
+
+  obtenerMensaje(){
+    this._ChatService.obtenerMensaje().subscribe(mensaje =>{
+      console.log(mensaje);
+      
+    })
   }
 
   ngOnDestroy(){
@@ -51,27 +53,33 @@ texto = ''
   }
 
   // enviar un heroe al servidor
-  enviar(){
+  enviarMensaje(){
+
     this._ChatService.sendMesage(this.texto)
     // console.log(this.texto);
-    
-    this.texto = ''
   }
 
 
   getData(){
 
-    this._HttpClient.get('http://localhost:4500/heroes').subscribe(data =>{
-
-    console.log(data);
-
-    })
+    this._HttpClient.get('http://localhost:4500/heroes').subscribe()
 
   }
 
   crearNuevo(){
+
+    // console.log(this.texto);
+
+    let heroe = {
+
+      nombre: this.texto,
+      poder: this.texto
+
+    }
+
+    // console.log(heroe);
     
-    this._HttpClient.post('http://localhost:4500/', this.heroe).subscribe()
+    this._HttpClient.post('http://localhost:4500/', heroe).subscribe()
 
     // this._HttpClient.get('http://localhost:4500/heroes').subscribe()
 
